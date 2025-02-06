@@ -1,0 +1,18 @@
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+h2 {
+    margin: 1rem 0;
+}
+
+h3 {
+    margin: .5rem 0;
+}
+
+.filters {
+    padding: 1em 3em 1em 4em;
+    min-width: 300px;
+}

@@ -1,0 +1,12 @@
+.wrapper {
+    background-color: var(--color-primary-dark);
+    padding: 4em;
+}
+
+.search {
+    width: 100%;
+    font-size: 1.4rem;
+    padding: .5em 1em;
+    border-radius: 4px;
+    border: none;
+}
