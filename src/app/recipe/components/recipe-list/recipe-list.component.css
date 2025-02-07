@@ -1,0 +1,14 @@
+h3 {
+    margin: 0;
+}
+
+.list {
+    padding-right: 4em;
+}
+
+.list_item {
+    background-color: #fff;
+    padding: 1em;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}

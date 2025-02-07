@@ -1,0 +1,52 @@
+<form class="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <h2>Create recipe</h2>
+    @switch (step) {
+        @case ('details') {
+            <label for="title">Title <span class="text-light">(required)</span></label>
+            <input type="text" id="title" class="text-input" formControlName="title" maxlength="255"/>
+            @if(title?.invalid && (title?.touched || title?.dirty)) {
+                <div class="text-input__error">Title is required</div>
+            }
+            <div class="actions align-right">
+                <button type="button" (click)="nextForm()" class="btn" [disabled]="title?.invalid">next</button>
+            </div>
+        }
+        @case ('instructions') {
+            <label for="instructions">Instructions <span class="text-light">(required)</span></label>
+            <textarea id="instructions" rows="20" formControlName="instructions"></textarea>
+            @if(instructions?.invalid && (instructions?.touched || instructions?.dirty)) {
+                <div class="text-input__error">Instructions are required</div>
+            }
+            <div class="actions">
+                <button type="button" (click)="previousForm()" class="btn">back</button>
+                <button type="button" (click)="nextForm()" class="btn" [disabled]="instructions?.invalid">next</button>
+            </div>
+        }
+        @case ('ingredients') {
+            <table class="table" formArrayName="ingredients">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(ingredient of ingredients.controls; track ingredient; let i = $index)
+                    {
+                        <tr [formGroupName]="i">
+                            <td><input type="text" class="text-input" formControlName="name"/></td>
+                            <td><input type="text" class="text-input" formControlName="amount"/></td>
+                            <td><button type="button" (click)="removeIngredient(i)">Delete</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="button" (click)="addIngredient()">Add</button>
+            <div class="actions">
+                <button type="button" (click)="previousForm()" class="btn">back</button>
+                <button class="btn">save</button>
+            </div>
+        }
+    }
+</form>
